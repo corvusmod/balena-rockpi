@@ -4,9 +4,9 @@
 [submodule "layers/meta-openembedded"]
 	path = layers/meta-openembedded
 	url = https://github.com/openembedded/meta-openembedded.git
-[submodule "layers/meta-raspberrypi"]
-	path = layers/meta-radxa
-	url = https://github.com/corvusmod/meta-radxa.git
+[submodule "layers/meta-rockpi"]
+	path = layers/meta-rockpi
+	url = https://github.com/corvusmod/meta-rockpi.git
 [submodule "layers/meta-balena"]
 	path = layers/meta-balena
 	url = https://github.com/balena-os/meta-balena.git
@@ -19,3 +19,6 @@
 [submodule "layers/meta-rust"]
 	path = layers/meta-rust
 	url = https://github.com/meta-rust/meta-rust.git
+[submodule "layers/openembedded-core"]
+	path = layers/openembedded-core
+	url = git://git.openembedded.org/openembedded-core

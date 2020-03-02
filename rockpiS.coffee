@@ -1,38 +1,44 @@
 deviceTypesCommon = require '@resin.io/device-types/common'
 { networkOptions, commonImg, instructions } = deviceTypesCommon
 
+postProvisioningInstructions = [
+	instructions.BOARD_SHUTDOWN
+	instructions.REMOVE_INSTALL_MEDIA
+	instructions.BOARD_REPOWER
+]
+
 module.exports =
 	version: 1
-	slug: 'raspberrypi3'
-	aliases: [ 'raspberrypi3' ]
-	name: 'Raspberry Pi 3'
-	arch: 'armv7hf'
-	state: 'released'
-	isDefault: true
+	slug: 'rockpi-s'
+	name: 'RockPi-S'
+	arch: 'aarch64'
+	state: 'experimental'
 
-	imageDownloadAlerts: [
-		{
-			type: 'warning'
-			message: 'The Raspberry Pi 3 is not capable of connecting to 5GHz WiFi networks unless you use an external WiFi adapter that supports it. The Raspberry Pi 3 B+ is capable of connecting to both 5GHz and 2.4GHz networks.'
-		}
-	]
+	stateInstructions:
+		postProvisioning: postProvisioningInstructions
 
-	instructions: commonImg.instructions
+	instructions: [
+		instructions.ETCHER_SD
+		instructions.EJECT_SD
+		instructions.FLASHER_WARNING
+	].concat(postProvisioningInstructions)
+
 	gettingStartedLink:
-		windows: 'https://www.balena.io/docs/learn/getting-started/raspberrypi3/nodejs/'
-		osx: 'https://www.balena.io/docs/learn/getting-started/raspberrypi3/nodejs/'
-		linux: 'https://www.balena.io/docs/learn/getting-started/raspberrypi3/nodejs/'
+		windows: 'https://docs.balena.io/nanopc-t4/nodejs/getting-started/#adding-your-first-device'
+		osx: 'https://docs.balena.io/nanopc-t4/nodejs/getting-started/#adding-your-first-device'
+		linux: 'https://docs.balena.io/nsnopc-t4/nodejs/getting-started/#adding-your-first-device'
+
 	supportsBlink: true
 
-	options: [ networkOptions.group ]
-
 	yocto:
-		machine: 'raspberrypi3'
+		machine: 'rockpi-s'
 		image: 'resin-image'
 		fstype: 'resinos-img'
 		version: 'yocto-warrior'
-		deployArtifact: 'resin-image-raspberrypi3.resinos-img'
+		deployArtifact: 'resin-image-rockpi-s.resinos-img'
 		compressed: true
+
+	options: [ networkOptions.group ]
 
 	configuration:
 		config:
